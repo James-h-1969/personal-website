@@ -1,8 +1,12 @@
-**Personal Website**
+# Personal Website
 This project is my personal website, created using React for the Frontend and Golang for the backend.
 
-Frontend:
+### Frontend:
+```
 bun run dev
+```
 
-Backend:
+### Backend:
+```
 reflex -r '\.go$' -s -- sh -c 'go run main.go'
+```
