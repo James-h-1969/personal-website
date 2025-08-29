@@ -5,7 +5,7 @@ const queryBlogs = async () => {
   // Function to hit endpoint to get all of the stored blogs. 
   // TODO. Add filtering based on topic
   try {
-    const res = await fetch("http://localhost:8080/api/blogs");
+    const res = await fetch("http://localhost:8080/api/blog/");
     const data = await res.json();
     return data;  // returns the blogs array
   } catch (err) {
@@ -50,6 +50,7 @@ const Blog = () => {
       <p>A collection of thoughts and ideas that I am learning about.</p>
       <div style={{ width: "100%", maxWidth: "1200px", padding: "0 20px" }}>
         {blogs.map((blog) => (
+          <a href={`/blog/${blog.id}`} style={{textDecoration:"none", color:"inherit"}}>
           <div
             key={blog.id}
             style={{
@@ -106,6 +107,7 @@ const Blog = () => {
               }}
             />
           </div>
+          </a>
         ))}
       </div>
     </div>
