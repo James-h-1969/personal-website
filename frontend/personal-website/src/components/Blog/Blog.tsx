@@ -14,8 +14,32 @@ const queryBlogs = async () => {
   }
 }
 
+const addSubscriber = async (emailAddress: string) => {
+  try {
+    const res = await fetch("http://localhost:8080/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: emailAddress }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to subscribe");
+    }
+
+    const data = await res.json();
+    console.log("Subscription success:", data);
+    return data; // you can return this to handle in the component
+  } catch (err) {
+    console.error("Error adding subscriber:", err);
+    throw err;
+  }
+};
+
 const Blog = () => {
   const [blogs, setBlogs] = useState<tBlog[]>([]);
+  const [email, setEmail] = useState<string>("");
   
   // ensure that the blogs show
   useEffect(() => {
@@ -25,6 +49,21 @@ const Blog = () => {
     };
     fetchBlogs();
   }, [])
+
+  const handleEmailButtonPress = (e) => {
+    e.preventDefault();
+
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!re.test(String(email).toLowerCase())) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // send POST request adding email to table
+    addSubscriber(email);
+    setEmail("");
+  }
 
    const containerStyle: React.CSSProperties = {
     width: "100%",
@@ -48,6 +87,44 @@ const Blog = () => {
         Blog
       </h1>
       <p>A collection of thoughts and ideas that I am learning about.</p>
+      <form 
+        onSubmit={handleEmailButtonPress}
+        style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "10px",
+        marginBottom: "30px"
+      }}>
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          style={{
+            padding: "10px 20px",
+            borderRadius: "30px",
+            border: "1px solid #ccc",
+            outline: "none",
+            fontSize: "16px",
+            flex: 1,
+          }}
+        />
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            borderRadius: "25px",
+            border: "none",
+            backgroundColor: "red",
+            color: "white",
+            fontSize: "14px",
+            cursor: "pointer"
+          }}
+        >
+          Subscribe
+        </button>
+      </form>
       <div style={{ width: "100%", maxWidth: "1200px", padding: "0 20px" }}>
         {blogs.map((blog) => (
           <a href={`/blog/${blog.id}`} style={{textDecoration:"none", color:"inherit"}}>
