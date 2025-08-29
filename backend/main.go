@@ -4,7 +4,6 @@ import (
     "fmt"
     "log"
     "net/http"
-
     "backend/api"
     "backend/config"
 )
@@ -18,7 +17,7 @@ func main() {
     defer db.Close()
 
     // Routes
-    http.HandleFunc("/api/blogs", api.BlogHandler(db))
+    http.HandleFunc("/api/blog/", api.BlogHandler(db))
     http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("./images"))))
 
     fmt.Println("Starting backend on :8080...")

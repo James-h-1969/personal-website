@@ -3,10 +3,19 @@ package service
 import (
 	"database/sql"
 	"backend/models"
+	"fmt"
 )
 
-func GetBlogs(database *sql.DB) ([]models.Blog, error) {
-	rows, err := database.Query("SELECT id, title, summary, cover_image, date_created FROM blogs")
+func GetBlogs(database *sql.DB, id int) ([]models.Blog, error) {
+	queryString := "SELECT id, title, summary, cover_image, date_created FROM blogs"
+
+	if id >= 0 {
+		queryString += fmt.Sprintf(" WHERE id = %d", id)
+	}
+
+	queryString += " ORDER by date_created DESC"
+
+	rows, err := database.Query(queryString)
 	if err != nil {
 		return nil, err 
 	}
