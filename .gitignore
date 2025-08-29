@@ -1,0 +1,44 @@
+backend/mydatabase.db
+
+# Frontend
+frontend/personal-website/node_modules/
+frontend/personal-website/dist/
+frontend/personal-website/build/
+frontend/personal-website/.env
+
+
+# Node / Bun
+node_modules/
+.bun/
+dist/
+.env
+*.log
+
+# React / TypeScript
+build/
+coverage/
+*.tsbuildinfo
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+bin/
+pkg/
+vendor/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.DS_Store
