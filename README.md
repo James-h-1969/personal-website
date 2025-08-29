@@ -1,11 +1,8 @@
-*How to Run*
+**Personal Website**
+This project is my personal website, created using React for the Frontend and Golang for the backend.
 
 Frontend:
+bun run dev
 
 Backend:
-Enter the backend folder and run 
 reflex -r '\.go$' -s -- sh -c 'go run main.go'
-
-Accessing the sqllite db 
-Use the command 
-sqllite3 mydatabase.db 
