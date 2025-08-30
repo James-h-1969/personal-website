@@ -18,7 +18,7 @@ func main() {
 
     // Routes
     http.HandleFunc("/api/blog/", api.BlogHandler(db))
-		http.HandleFunc("/api/subscriber/", api.SubscriberHandler(db)):w http.ResponseWriter, r *http.Request
+		http.HandleFunc("/api/subscriber/", api.SubscriberHandler(db))
     http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("./images"))))
 
     fmt.Println("Starting backend on :8080...")
