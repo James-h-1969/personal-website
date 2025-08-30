@@ -16,7 +16,7 @@ const queryBlogs = async () => {
 
 const addSubscriber = async (emailAddress: string) => {
   try {
-    const res = await fetch("http://localhost:8080/api/subscribe", {
+    const res = await fetch("http://localhost:8080/api/subscribe/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
