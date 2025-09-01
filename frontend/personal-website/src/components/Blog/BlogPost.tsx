@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { tBlog } from "./BlogTypes.ts";
 import { FaArrowLeft } from "react-icons/fa";
+import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const queryBlog = async (id: number) => {
   try {
@@ -117,6 +120,9 @@ const BlogPost = () => {
         >
           {blog.summary}
         </p>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {blog.content}
+        </ReactMarkdown>
       </div>
     </div>
   );

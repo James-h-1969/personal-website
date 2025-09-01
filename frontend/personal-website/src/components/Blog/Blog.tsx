@@ -29,7 +29,7 @@ const addSubscriber = async (emailAddress: string) => {
     }
 
     const data = await res.json();
-    console.log("Subscription success:", data);
+    alert("Succesfully added to list of subscribers - Welcome!")
     return data; // you can return this to handle in the component
   } catch (err) {
     console.error("Error adding subscriber:", err);

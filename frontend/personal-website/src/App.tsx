@@ -1,7 +1,9 @@
 import TaskBar from './components/TaskBar.tsx';
 import BlogPost from './components/Blog/BlogPost.tsx'
 import Blog from './components/Blog/Blog.tsx';
+import HomePage from './components/HomePage/HomePage.tsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
@@ -10,6 +12,7 @@ function App() {
         <TaskBar />
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
           </Routes>

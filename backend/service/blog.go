@@ -7,7 +7,7 @@ import (
 )
 
 func GetBlogs(database *sql.DB, id int) ([]models.Blog, error) {
-	queryString := "SELECT id, title, summary, cover_image, date_created FROM blogs"
+	queryString := "SELECT id, title, summary, cover_image, date_created, content FROM blogs"
 
 	if id >= 0 {
 		queryString += fmt.Sprintf(" WHERE id = %d", id)
@@ -24,7 +24,7 @@ func GetBlogs(database *sql.DB, id int) ([]models.Blog, error) {
 	var blogs []models.Blog 
 	for rows.Next() {
 		var blog models.Blog 
-		err := rows.Scan(&blog.ID, &blog.Title, &blog.Summary, &blog.CoverImage, &blog.DateCreated)
+		err := rows.Scan(&blog.ID, &blog.Title, &blog.Summary, &blog.CoverImage, &blog.DateCreated, &blog.Content)
 		if err != nil {
 			return nil, err
 		}

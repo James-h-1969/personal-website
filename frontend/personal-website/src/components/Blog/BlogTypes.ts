@@ -10,4 +10,5 @@ export type tBlog = {
     dateCreated: Date;
     summary: string;
     previewImage: string;
+    content: string;
 }
