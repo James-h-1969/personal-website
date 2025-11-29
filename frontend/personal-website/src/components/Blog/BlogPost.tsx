@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { tBlog } from "./BlogTypes.ts";
+import {stringToColor} from "../../helpers/helpers.ts"; 
 import { FaArrowLeft } from "react-icons/fa";
 import React from "react";
 import ReactMarkdown from "react-markdown";
@@ -94,15 +95,21 @@ const BlogPost = () => {
             Return to Blogs
           </a>
         </div>
-        <h1
-          style={{
-            fontSize: "2.5rem",
-            fontWeight: "bold",
-            marginBottom: "16px",
-          }}
-        >
-          {blog.title}
-        </h1>
+        <div style={{display:"flex", alignItems:"center", gap: '20px'}}> 
+          <h1
+            style={{
+              fontSize: "2.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            {blog.title}
+          </h1>
+          {
+            blog.tags.map(tag => (
+              <div style={{backgroundColor:stringToColor(tag), padding: "2px 8px", borderRadius:"5px", color:"white", fontSize: "12px"}}>{tag}</div>
+            ))
+          }
+        </div>
         <p
           style={{
             color: "#6B7280", // subtle gray

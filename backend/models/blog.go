@@ -1,6 +1,5 @@
 package models
 
-// Define your blog structure
 type Blog struct {
     ID      int    `json:"id"`
     Title   string `json:"title"`
@@ -8,6 +7,7 @@ type Blog struct {
 		CoverImage string `json:"cover_image"`
 		DateCreated string `json:"date_created"`
 		Content string `json:"content"`
+		Tags []string `json:"tags"`
 }
 
 

@@ -1,7 +1,7 @@
 - Add a CRUD for the blogs
 - Add a sign up link to be notified of new blogs 
     - Feature flag for if the blog is published or not 
-- Add topics to the blogs, add a search by topic. 
+- add a search by topic. 
 - Write the first blog 
     - Idea: SynthId - developed by Google, its a way for images and videos to be watermakered.
 

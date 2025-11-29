@@ -11,4 +11,5 @@ export type tBlog = {
     summary: string;
     previewImage: string;
     content: string;
+    tags: list[string];
 }

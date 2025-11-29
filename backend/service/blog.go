@@ -1,13 +1,14 @@
 package service
 
 import (
+	"encoding/json"
 	"database/sql"
 	"backend/models"
 	"fmt"
 )
 
 func GetBlogs(database *sql.DB, id int) ([]models.Blog, error) {
-	queryString := "SELECT id, title, summary, cover_image, date_created, content FROM blogs"
+	queryString := "SELECT * FROM blogs"
 
 	if id >= 0 {
 		queryString += fmt.Sprintf(" WHERE id = %d", id)
@@ -22,12 +23,18 @@ func GetBlogs(database *sql.DB, id int) ([]models.Blog, error) {
 	defer rows.Close()
 
 	var blogs []models.Blog 
+	var tagsJSON string
 	for rows.Next() {
 		var blog models.Blog 
-		err := rows.Scan(&blog.ID, &blog.Title, &blog.Summary, &blog.CoverImage, &blog.DateCreated, &blog.Content)
+		err := rows.Scan(&blog.ID, &blog.Title, &blog.Summary, &blog.CoverImage, &blog.DateCreated, &blog.Content, &tagsJSON)
 		if err != nil {
 			return nil, err
 		}
+		err = json.Unmarshal([]byte(tagsJSON), &blog.Tags)
+		if err != nil {
+			return nil, err
+		}
+
 		blogs = append(blogs, blog)
 	}
 
